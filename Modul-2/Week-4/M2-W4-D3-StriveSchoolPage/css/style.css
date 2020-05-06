@@ -3,6 +3,10 @@ body{
     font-size:16px;
 }
 
+section {
+    padding:80px;
+}
+
 .blackBg{
     background-color: #181818;
 }
@@ -19,6 +23,11 @@ body{
     font-weight: 700px;
 }
 
+.#join-section > h2{
+    padding-top:80px;
+    font-size:60px;
+}
+
 .btn{
     width:200px !important;
     padding-top:20px !important;
@@ -26,6 +35,12 @@ body{
     font-size:1.1rem;
     border-radius: 0 !important;
     font-weight: 700;
+    color: white;
+
+}
+
+.btn:hover{
+    color: white;
 
 }
 
@@ -38,7 +53,15 @@ body{
 #jumbotron{
     background-color: #181818;
     color:white;
+    background-image: url(../img/1.jpg);
+    
+    object-fit: cover;
 }
+
+#jumbotron >.container{
+
+}
+
 @media(min-width: 768px){
     #jumbotron h1{
         max-width:80%
