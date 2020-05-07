@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <style>
+      a:hover {
+        color: red;
+      }
+
+      .box {
+        width: 150px;
+        height: 150px;
+        background-color: #bdc7d0;
+        margin-bottom: 2px;
+      }
+
+      #first .col div.elementIWant,
+      #first .col div {
+        width: 50px;
+        height: 50px;
+        background-color: #bdc7d0;
+      }
+
+      #second label.active {
+        background-color: blue !important;
+      }
+
+      #third .box > span {
+        background-color: blue;
+      }
+
+      #fourth div.col .divIWant + p {
+        background-color: red;
+      }
+
+      #fifth p ~ div ul {
+        background-color: blue;
+      }
+      #sixth input[type="email"] {
+        margin-left: 200px;
+      }
+      #seventh a[href$=".png"] {
+        color: black;
+      }
+
+      #eigth .col {
+        color: red !important;
+      }
+
+      #eigth .col:first-child {
+        color: white !important;
+      }
+      #eigth .col:last-of-type {
+        color: white !important;
+      }
+
+      ul.myList li:not(:last-child) {
+        display: inline-block;
+        border-right: 1px solid rgb(214, 214, 214);
+        margin-top: 1rem;
+        margin-right: 4px;
+        padding-right: 10px;
+      }
+
+      ul.myList li:last-child {
+        display: inline-block;
+      }
+
+      #ninth .box {
+        /* position: relative; */
+      }
+
+      #ninth .col {
+        z-index: 0;
+      }
+
+      #ninth .box::before {
+        content: ">>";
+        position: absolute;
+        top: 0;
+        right: 30px;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        background-color: green;
+        z-index: -1;
+        opacity: 1;
+        height: 60px;
+      }
+
+      /* #ninth .box:hover::before {
+              z-index: 2;
+              background: linear-gradient(
+                90deg,
+                rgba(0, 0, 0, 0.5) 0%,
+                rgba(255, 255, 255, 0.5) 100%
+              );
+            } */
+
+      #ninth .box::after {
+        content: ">>";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 30px;
+        width: 60px;
+        background-color: red;
+        z-index: 2;
+        opacity: 1;
+        height: 60px;
+      }
+
+      .box.last-boxes {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 50px;
+      }
+
+      .box.last-boxes:first-of-type {
+        background-color: black;
+        left: 0;
+        z-index: 2;
+      }
+      .box.last-boxes:nth-of-type(2) {
+        z-index: 5;
+      }
+      .box.last-boxes:last-of-type {
+        background-color: red;
+        left: 120px;
+      }
+
+      .exercise {
+        margin: 2rem auto;
+      }
+
+      .exercise > .row > .col-6:first-child {
+        height: 400px;
+        background-color: #00800094;
+        color: white;
+        border: 2px solid black;
+        border-top-left-radius: 50px;
+        border-bottom-left-radius: 50px;
+      }
+      .exercise > .row > .col-6:nth-child(2) > .row > .col-4 {
+        background-color: #299bff;
+        color: white;
+        font-weight: bold;
+        border-top: 2px solid #000000b8;
+        border-bottom: 2px solid #000000b8;
+        padding-bottom: 20px;
+      }
+
+      .exercise > .row > .col-6:nth-child(2) > .row > .col-8 {
+        padding: 0px;
+        text-align: center;
+      }
+
+      .exercise > .row > .col-6:nth-child(2) > .row > .col-8 > div {
+        width: 100%;
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .exercise
+        > .row
+        > .col-6:nth-child(2)
+        > .row
+        > .col-8
+        > div:nth-child(1) {
+        background-color: #ffe00042;
+        border-top-right-radius: 50px;
+        border-top: 2px solid #000000b8;
+        border-right: 2px solid #000000b8;
+      }
+      .exercise
+        > .row
+        > .col-6:nth-child(2)
+        > .row
+        > .col-8
+        > div:nth-child(2) {
+        background-color: #ffe00096;
+        border-right: 2px solid #000000b8;
+      }
+      .exercise
+        > .row
+        > .col-6:nth-child(2)
+        > .row
+        > .col-8
+        > div:nth-child(3) {
+        background: #ffe000e0;
+        border-bottom-right-radius: 50px;
+        border-right: 2px solid #000000b8;
+        border-bottom: 2px solid #000000b8;
+      }
+    </style>
+    <title>CSS Selectors!</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="font-weight-bolder mt-5 mb-4">CSS Selectors</h1>
+      <div class="row mb-5">
+        <div class="col-8">
+          <div class="container">
+            <div id="first" class="row row-cols-4 py-4 border rounded bg-light">
+              <div class="col">
+                <div>1</div>
+              </div>
+              <div class="col"><div>2</div></div>
+              <div class="col"><div>3</div></div>
+              <div class="col"><div>4</div></div>
+              <div class="col"><div>5</div></div>
+              <div class="col"><div>6</div></div>
+              <div class="col"><div class="elementIWant">7</div></div>
+              <div class="col"><div>8</div></div>
+              <div class="col"><div>9</div></div>
+              <div class="col"><div>10</div></div>
+              <div class="col"><div>11</div></div>
+              <div class="col"><div>12</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <h5>
+            Let's create boxes for each number
+          </h5>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-8">
+          <div class="container">
+            <div id="second" class="row py-4 border rounded bg-light">
+              <div class="col">
+                <div id="third" class="row justify-content-center no-gutters">
+                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary active">
+                      <input type="radio" name="options" id="option1" checked />
+                      Active
+                    </label>
+                    <label class="btn btn-secondary">
+                      <input type="radio" name="options" id="option2" /> Radio
+                    </label>
+                    <label class="btn btn-secondary">
+                      <input type="radio" name="options" id="option3" /> Radio
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <h5>
+            Let's target the active state and change its color
+          </h5>
+        </div>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-8">
+          <div class="container">
+            <div
+              id="third"
+              class="row justify-content-center py-4 border rounded bg-light"
+            >
+              <div class="col">
+                <div class="box mx-auto">
+                  div
+                  <p class="mt-3 mx-3 text-center bg-white">paragraph</p>
+                  <span class="text-danger" style="background-color: black;"
+                    >span</span
+                  >
+                  <p class="mt-3 mx-3 text-center bg-white">paragraph</p>
+                </div>
+                <div class="box mx-auto">
+                  div
+                  <p class="mt-3 mx-3 text-center bg-white">paragraph</p>
+
+                  <ul>
+                    <li>list-element</li>
+                    <li>
+                      <p class="mt-3 mr-3 text-center bg-white">paragraph</p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="box mx-auto">
+                  div
+                  <p class="mt-2 mx-3 text-center bg-white">
+                    paragraph <span class="text-danger">span</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <h5>
+            Let's select only the paragraphs that are immediate children of
+            their parent divs
+          </h5>
+        </div>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-8">
+          <div class="container">
+            <div id="fourth" class="row py-4 border rounded bg-light">
+              <div class="col">
+                <h1>title</h1>
+
+                <div class="divIWant bg-white pb-3">
+                  div
+                  <h2 class="text-center">title2</h2>
+                  <p class="text-center">paragraph</p>
+                </div>
+
+                <p>paragraph</p>
+
+                <p>paragraph</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <h5>
+            Let's select the p adjacent to the div
+          </h5>
+        </div>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-8">
+          <div class="container">
+            <div id="fifth" class="row py-4 border rounded bg-light">
+              <div class="col">
+                <div class="bg-white border pl-3 py-2" style="width: 100%;">
+                  div
+                </div>
+                <ul>
+                  <li>item 1</li>
+                  <li>item 2</li>
+                  <li>item 3</li>
+                </ul>
+
+                <p>paragraph</p>
+                <div>
+                  <ul>
+                    <li>item 1</li>
+                    <li>item 2</li>
+                    <li>item 3</li>
+                  </ul>
+
+                  <h2>title</h2>
+                  <ul>
+                    <li>item 1</li>
+                    <li>item 2</li>
+                    <li>item 3</li>
+                  </ul>
+                </div>
+                <div>
+                  <span>span</span>
+                  <ul>
+                    <li>item 1</li>
+                    <li>item 2</li>
+                    <li>item 3</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <h5>
+            Let's select only the two lists after a p tag and add a
+            background-color
+          </h5>
+        </div>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-8">
+          <div class="container">
+            <div id="sixth" class="row py-4 border rounded bg-light">
+              <div class="col">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Username"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+
+                <div class="input-group mb-3">
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Recipient's username"
+                    aria-label="Recipient's username"
+                    aria-describedby="basic-addon2"
+                  />
+                  <div class="input-group-append">
+                    <span class="input-group-text" id="basic-addon2"
+                      >@example.com</span
+                    >
+                  </div>
+                </div>
+
+                <label for="basic-url">Your vanity URL</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3"
+                      >https://example.com/users/</span
+                    >
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                  />
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    aria-label="Amount (to the nearest dollar)"
+                    lang="en"
+                  />
+                  <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                  </div>
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">With textarea</span>
+                  </div>
+                  <textarea
+                    class="form-control"
+                    aria-label="With textarea"
+                  ></textarea>
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input
+                        type="checkbox"
+                        aria-label="Checkbox for following text input"
+                        checked
+                      />
+                    </div>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    aria-label="Text input with checkbox"
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input
+                        type="checkbox"
+                        aria-label="Checkbox for following text input"
+                      />
+                    </div>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    aria-label="Text input with checkbox"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <h5>
+            Let's target inputs by their attributes type
+          </h5>
+        </div>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-8">
+          <div class="container">
+            <div id="seventh" class="row py-4 border rounded bg-light">
+              <div class="col">
+                <a href="https://google.it">Google</a>
+              </div>
+              <div class="col">
+                <a href="Strive-logo.png">Strive logo</a>
+              </div>
+              <div class="col">
+                <a href="https://www.strive.school/">Strive website</a>
+              </div>
+              <div class="col">
+                <a href="http://www.website.it/">Unsecure website</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <h5>
+            Lets select the links with an href that references a secure website
+            and make them green
+          </h5>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-8">
+          <div class="container">
+            <div
+              id="eigth"
+              class="row row-cols-6 py-4 border rounded bg-light px-3"
+              style="height: 200px;"
+            >
+              <div class="col bg-dark text-white mb-1 border text-center">
+                1
+              </div>
+              <div class="col bg-dark text-white mb-1 border text-center">
+                2
+              </div>
+              <div class="col bg-dark text-white mb-1 border text-center">
+                3
+              </div>
+              <div class="col bg-dark text-white mb-1 border text-center">
+                4
+              </div>
+              <div class="col bg-dark text-white mb-1 border text-center">
+                5
+              </div>
+              <div class="col bg-dark text-white mb-1 border text-center">
+                6
+              </div>
+              <div class="col bg-dark text-white mb-1 border text-center">
+                7
+              </div>
+              <div class="col bg-dark text-white mb-1 border text-center">
+                8
+              </div>
+              <div class="col bg-dark text-white mb-1 border text-center">
+                9
+              </div>
+              <div class="col bg-dark text-white mb-1 border text-center">
+                10
+              </div>
+              <div class="col bg-dark text-white mb-1 border text-center">
+                11
+              </div>
+              <div class="col bg-dark text-white mb-1 border text-center">
+                12
+              </div>
+            </div>
+          </div>
+          <ul class="myList">
+            <li>
+              elem1
+            </li>
+            <li>
+              elem2
+            </li>
+            <li>
+              elem3
+            </li>
+            <li>
+              elem4
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-4">
+          <h5>
+            Let's select divs by number and change colors
+          </h5>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-8">
+          <div class="container">
+            <div id="ninth" class="row row-cols-4 py-4 border rounded bg-light">
+              <div class="col">
+                <div class="box"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <h5>
+            Let's create pseudo elements from the this box
+          </h5>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="d-flex justify-content-center align-items-center"
+      style="height: 30vh; background-color: #f8f8f8;"
+    >
+      <div class="box mr-2"></div>
+      <div class="box mr-2"></div>
+      <div class="box"></div>
+    </div>
+
+    <div class="container exercise">
+      <div class="row">
+        <div
+          class="col-6 d-flex justify-content-center align-items-center text-center"
+        >
+          <span
+            >First Column Height 400px; <br />
+            Green-ish background <br />Text Centered</span
+          >
+        </div>
+        <div class="col-6">
+          <div class="row h-100">
+            <div class="col-4 d-flex align-items-end">
+              Second Column Text To the bottom Bold, blueish background
+            </div>
+            <div
+              class="col-8 d-flex flex-column align-items-center justify-content-around"
+            >
+              <div>Third Column Part 1</div>
+              <div>Third Column Part 2</div>
+              <div>Third Column Part 3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

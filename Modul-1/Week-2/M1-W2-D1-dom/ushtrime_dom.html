@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Accessing Elements in the DOM</title>
+
+    <style>
+      html {
+        font-family: sans-serif;
+        color: #333;
+      }
+      body {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+      div,
+      article {
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid #dedede;
+      }
+      .newClass {
+        font-size: 30px;
+      }
+      .genericClass {
+        background-color: blue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Accessing Elements in the DOM</h1>
+
+    <h2>ID (#demo)</h2>
+    
+      <div id="demo">
+          <p> Access me by ID </p>
+
+          </div>
+  
+    
+
+    <h2>Class (.demo)</h2>
+    <div class="demo">
+      Access me by class (1)
+    </div>
+    <div class="demo">Access me by class (2)</div>
+
+    <h2>Tag (article)</h2>
+    
+      <article>Access me by tag (1)</article>
+      <article>Access me by tag (2)</article>
+   
+   
+
+    <h2>Query Selector</h2>
+    <div id="demo-query">Access me by query</div>
+
+    <h2>Query Selector All</h2>
+    <div class="demo-query-all">Access me by query all (1)</div>
+    <div class="demo-query-all">Access me by query all (2)</div>
+
+    <h2>A more complex query</h2>
+    <div id="more-complex">
+      <ul>
+        <li>
+          First element inside a list
+        </li>
+        <li>
+          Second element inside a list
+        </li>
+        <li>
+          Third element inside a list
+        </li>
+      </ul>
+    </div>
+
+    <script>
+        //krijojme nje variabel IdDemo - dhe i ngjesim asaj vleren e 'demo', te cilen e kemi krijuar me heret. Kthen vetem ato qe jane ne faqe. Nese kerkojme nje id qe nuk efgziston, atehre e kthen NULL
+        let idDemo = document.getElementById('demo');
+        
+        // i qasemi klases se elementeve me emrin e klases demo. Kjo return array
+        let classDemo=document.getElementsByClassName('demo');
+
+        //Kthen elementin e pare qe kemi ne ate klas
+        console.log(classDemo[1]);
+
+        // i marrim elementet by TagName ku i kerkojme te gjithe elemntet qe jane div. Krijojm for loop, per te na kthyar te gjithe elemnetet me tag name DIv
+        let tagDemo = document.getElementsByTagName('div');
+        for(let x=0; x<tagDemo.length; x++)
+           {    console.log(tagDemo[x]) }
+
+        // QUERY SELECTOR
+        document.querySelector('.demo') // kthen vetem ate qe ndodhet ne pozite te pare te klases demo. sepse querySelector kthen vetem nje.
+
+        document.querySelectorAll('.demo') // i kthen te gjithe elementet (ne kete rast dy) qe permban kjo klase. i kthen ne forme te array.
+        document.querySelectorAll('.demo')[1]// selekton elementin e dyte
+
+        document.querySelectorAll('div')
+
+        document.querySelectorAll("div")[2]//Kthen div qe eshte e indeksin e 3-te.
+
+        // CHANGEING PROPERTIES
+
+        let accessMeId = document.querySelector('#demo')
+        //accessMeId.innerText="Changed with .innerText";// e ndryshon tekstin qe ndodhet ne te element.
+
+        accessMeId.innerHTML = "<p>This is .innerHTML</p>"; // i referoohemi paragrafit
+        accessMeId.innerHTML +="<p> Shtojme nje paragraf.</p>"; // me+= e shtojm nje paragraf te ri
+        //accessMeId.innerHTML-="<p> Shtojme nje praragraf.</p>";//i fshin krejt paragrafat, dhe ne browser del NaN
+
+        let accesMeTag = document.querySelectorAll('article')[1]
+        accesMeTag.style.backgroundColor="green"; // ndryshojm ngjyren e prapaviijes
+
+        accesMeTag.style.color="yellow";// ndryshojme ngjyren e tekstit
+
+        // CREATING NEW ELEMENTS
+        
+        let newP = document.createElement('p'); // krijojm nje paragraf
+        newP.innerText="This is a new created paragraph!"; // incializojm paragrafin
+
+        let newP2 = document.createElement('p');
+        newP2.innerText="Hello World!";
+
+        let shtojeKetu = document.querySelectorAll('article')[1];//zgjehdim vendin ku do e shtojme
+        shtojeKetu.appendChild(newP);//shtojme paragrafin
+        shtojeKetu.appendChild(newP); // nuk paraqitet dy here
+        shtojeKetu.appendChild(newP2);
+
+        newPOnDiv = document.querySelectorAll('div')[3]; 
+        // ↑↑ same as: newPOnDiv = document.querySelector('#demo-query');
+        newPOnDiv.appendChild(newP); // nese e vendos ketu, largohet te pjesa larte.
+
+        //adding a new div:
+        let newDiv = document.createElement('div');
+        newDiv.innerHTML='<p> This is a paragrapg on a new div</p>'
+
+        let placeOfDiv = document.querySelector('body');
+        placeOfDiv.appendChild(newDiv);
+        let newPonD = document.createElement('p');
+        newPonD.innerText="New paragraph on div.";
+        newDiv.appendChild(newPonD);
+
+        // adding list
+
+        let unorderedList = document.querySelector('#more-complex ul');
+        let newListElement = document.createElement('li');
+        newListElement.innerText='New list Element';
+        unorderedList.appendChild(newListElement)
+    
+
+
+        
+
+
+
+
+    </script>
+    
+    <!-- <script>
+      window.onload = function () {
+        let demoParagraph = document.querySelector('#demo p')
+        console.log(demoParagraph)
+        demoParagraph.innerText = 'the text has changed!'
+        document.querySelector('#demo p').innerText = 'changed again!!'
+        demoParagraph.style.color = 'red'
+        demoParagraph.classList.add('newClass')
+        demoParagraph.classList.remove('newClass')
+      }
+      function replicate() {
+        let demo = document.querySelector('#demo')
+        let demo2 = demo.cloneNode(true)
+        let demoContainer = document.querySelector('#demoContainer')
+        demoContainer.appendChild(demo2)
+      }
+      function createArticle() {
+        let random = Math.random() * 11
+        random = Math.floor(random)
+        let myNewArticle = document.createElement('article')
+        myNewArticle.innerText = "I've been created from scratch! " + random
+        myNewArticle.style.color = 'red'
+        myNewArticle.classList.add('genericClass')
+        myNewArticle.onclick = function (e) {
+          console.log('you clicked me!!')
+          console.log('EVENT INFO', e)
+        }
+        // element is completed but I need to attach it somewhere
+        let parent = document.querySelector('#articleContainer')
+        parent.appendChild(myNewArticle)
+      }
+    </script> -->
+  </body>
+</html>
