@@ -56,9 +56,11 @@
     <h2>Tag (article)</h2>
       <div id="articleContainer">
         <article>Access me by tag (1)</article>
-        <article>Access me by tag (2)</article>
+        <article>Access me by tag (2)</article><br>
+        
     </div>
-        <input type="button" onclick="createArticle()" value="Create" style="color:rgb(177, 184, 177); background-color: rgb(2, 59, 2);">
+        <input type="button" onclick="createArticle()"  value="Create" style="color:rgb(177, 184, 177); background-color: rgb(2, 59, 2);">
+        <input type="text" onkeydown="keyPressed(event)">
     
    
    
@@ -124,14 +126,36 @@
            let myNewArticle = document.createElement('article');
            myNewArticle.innerText = random + " I've been created from javascript!";
            myNewArticle.style.color = "black";
-           myNewArticle.classList.add('genericClass');
-          //Element is completed, but not attached.
+           myNewArticle.classList.add('genericClass');//Element is completed, but not attached.
+
+            // adding an event - FUNCTION
+            myNewArticle.onclick = function(e) { //sa here ta klikojme konsol logohet
+             console.log('you clicked me!')
+             console.log('EVENT INFO', e) //'e'-ja na tregon cdo lloj informacioni qe ka ndodh te onclick - kur kemi klikuar mbi te.
+           }
+          
 
           //e kemi atach te #articleContainer 
            let prindi = document.querySelector('#articleContainer');//parent can be named as we want
            prindi.appendChild(myNewArticle);
          }
-         
+        //  i njejti funksion si me sipor, por i krijuar jasht funksionit kryesor.
+        //  let eventHandlet = function(e) {
+        //    console.log('you clicked me!!');
+        //    console.log("EVENT INFO", e)
+        //  }
+
+        // OnKeyDown - Event
+        function keyPressed(e) {
+          console.log('a key has been pressed!');
+          console.log(e);// tregon se cilen shkronje po e shtypim
+
+          if(e.key=='#'){
+            alert("the # is not alowed!");
+          } // del alert ne rast se shtypim # sepse ky karakter nuk lejohet.
+        }
+
+
 
        
     
