@@ -29,7 +29,7 @@
         font-size: 30px;
       }
       .genericClass {
-        background-color: blue;
+        background-color: rgb(33, 233, 206);
       }
     </style>
   </head>
@@ -40,7 +40,7 @@
     <h2>ID (#demo)</h2>
     <div id="demoContainer">
       <div id="demo">
-          <p> Access me by ID </p>
+          <p class="paragraf"> Access me by ID </p>
       </div>
     </div>
       <input type="button" onclick="replicate()" value="REPLICATE" style="color:rgb(177, 184, 177); background-color: rgb(2, 59, 2);">
@@ -54,9 +54,12 @@
     <div class="demo">Access me by class (2)</div>
 
     <h2>Tag (article)</h2>
+      <div id="articleContainer">
+        <article>Access me by tag (1)</article>
+        <article>Access me by tag (2)</article>
+    </div>
+        <input type="button" onclick="createArticle()" value="Create" style="color:rgb(177, 184, 177); background-color: rgb(2, 59, 2);">
     
-      <article>Access me by tag (1)</article>
-      <article>Access me by tag (2)</article>
    
    
 
@@ -98,6 +101,14 @@
           let demoPrg = document.querySelector('#demo p');//therrasim paragrfin brenda div me id demo
           console.log(demoPrg);
           demoPrg.innerText = 'the text has changed!'
+
+          demoPrg.style.color="red"; // ndryshon ngjyren e paragrafit
+          demoPrg.style.fontsize="50px"; // ndryshon madhesine e shkronjave
+
+          demoPrg.classList.add('newClass'); // e shton nje klass te paragrafi
+          demoPrg.classList.remove('paragraf'); // e heq klasen paragraf nga <p>vf
+
+          
          }
 
          function replicate() {
@@ -105,8 +116,16 @@
              let demo2 = demo.cloneNode(true);
              let demoContainer = document.querySelector('#demoContainer');
              demoContainer.appendChild(demo2);
-             
-             
+         }
+
+         function createArticle() {
+           let myNewArticle = document.createElement('article');
+           myNewArticle.innerText = "I've been created from javascript!";
+           myNewArticle.style.color = "black";
+           myNewArticle.classList.add('genericClass');
+
+           let parent = document.querySelector('#articleContainer');
+           parent.appendChild(myNewArticle);
          }
 
        
