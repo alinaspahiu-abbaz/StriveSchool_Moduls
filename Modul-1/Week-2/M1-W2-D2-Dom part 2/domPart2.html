@@ -119,13 +119,17 @@
          }
 
          function createArticle() {
+           let random =( Math.random()*50) //math function
+           random = Math.floor(random); // e rrumbullakson numrin ne numer te plote.
            let myNewArticle = document.createElement('article');
-           myNewArticle.innerText = "I've been created from javascript!";
+           myNewArticle.innerText = random + " I've been created from javascript!";
            myNewArticle.style.color = "black";
            myNewArticle.classList.add('genericClass');
+          //Element is completed, but not attached.
 
-           let parent = document.querySelector('#articleContainer');
-           parent.appendChild(myNewArticle);
+          //e kemi atach te #articleContainer 
+           let prindi = document.querySelector('#articleContainer');//parent can be named as we want
+           prindi.appendChild(myNewArticle);
          }
 
        
