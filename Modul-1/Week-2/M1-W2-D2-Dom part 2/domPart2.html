@@ -38,11 +38,12 @@
     <h1>Accessing Elements in the DOM</h1>
 
     <h2>ID (#demo)</h2>
-    
+    <div id="demoContainer">
       <div id="demo">
           <p> Access me by ID </p>
       </div>
-      <input type="button" onclick="replicate()" value="REPLICATE">
+    </div>
+      <input type="button" onclick="replicate()" value="REPLICATE" style="color:rgb(177, 184, 177); background-color: rgb(2, 59, 2);">
   
     
 
@@ -87,16 +88,25 @@
       //     console.log(document.querySelector('#demo')); 
       // }
         //  Njejt si kjo larte:
-      window.onload=function(){
+      window.onload=function() {
         let demo = document.querySelector('#demo');
           console.log(demo);
           // demo <-- demo tani e reprezonton id=demo. nese deshirojme me ndryshu dicka, e thrrasim drejt per se drejti.
          }
 
-         window.onload=function(){
+         window.onload=function() {
           let demoPrg = document.querySelector('#demo p');//therrasim paragrfin brenda div me id demo
           console.log(demoPrg);
           demoPrg.innerText = 'the text has changed!'
+         }
+
+         function replicate() {
+             let demo = document.querySelector('#demo');
+             let demo2 = demo.cloneNode(true);
+             let demoContainer = document.querySelector('#demoContainer');
+             demoContainer.appendChild(demo2);
+             
+             
          }
 
        
