@@ -4,7 +4,7 @@
         <title> Calculator </title>
         <style>
           body {
-              background-color: rgba(7, 12, 7, 0.966);
+              background-color: #090214;
           }
 
           #calculator {
@@ -25,17 +25,23 @@
             text-align:right;
             width:100%;
             max-width:210px;
+            border-radius: 10px;;
+            background-color: rgb(205, 245, 182);
 
         }
 
         .numericButton {
             color:rgb(18, 85, 5);
             background-color:rgba(130, 170, 125, 0.911);
+            border-radius:15px;
+            border-color:rgb(88, 131, 88);
         }
 
         .functionButton {
             color:rgb(123, 128, 124);
             background-color: rgb(54, 4, 25);
+            border-radius: 10px;
+            border-color:rgb(103, 90, 133);
         }
 
         </style>
@@ -81,6 +87,49 @@
 
     </table>
  </div> 
+
+ <script>
+     window.addEventListener('DOMContentLoaded', function() {
+                     console.log("Dom Loaded");
+
+                     const numericButtonPressed = function (event) {
+                         const numberPressed = event.target.value
+                         console.log(numberPressed)
+
+                         const result = document.getElementById('result')
+                         if(result.value=='0'){ 
+                             result.value=numberPressed
+                            
+
+                         } else {
+                            result.value = result.value + numberPressed;//concatinating the numbers - bashkim i numrave
+
+                         }
+                         
+
+                     }
+
+                     const functionButton = function (event) {
+                         console.log(event.target.value);
+                     }
+
+                     
+
+                     const numericButtons = document.getElementsByClassName("numericButton");
+                        //console.log(numericButtons);
+                    
+                    const functionButtons = document.getElementsByClassName("functionButton");
+                           //console.log(functionButtons)
+
+                    for(let button of numericButtons) {
+                        button.addEventListener('click', numericButtonPressed)
+                    }
+
+                    
+     });
+
+
+ </script>
 
 </body>
 </html>
