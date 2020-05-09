@@ -91,6 +91,25 @@
  <script>
      window.addEventListener('DOMContentLoaded', function() {
                      console.log("Dom Loaded");
+                     // Memory of our calculator
+                     let operation = "";
+                     let previousResult = 0; //First Operand
+
+                     const sum = function(x,y) {
+                         return x + y;
+                     }
+
+                     const diff = function(x,y) {
+                         return x - y;
+                     }
+
+                     const mul = function(x,y) {
+                         return x * y;
+                     }
+
+                     const div = function(x,y) {
+                         return x / y;
+                     }
 
                      const numericButtonPressed = function (event) {
                          const numberPressed = event.target.value
@@ -108,8 +127,48 @@
                      
                      }
 
-                     const functionButton = function (event) {
-                         console.log(event.target.value);  
+                     const functionButtonPressed = function (event) {
+                         const keyPressed = event.target.value;
+                         console.log(keyPressed);
+                         const result = document.getElementById('result');
+
+                         switch(keyPressed) {
+                             case '=': //compute and display the result
+                                   switch (operation){ // switch between: + - * /
+                                   case '+':
+                                        // fist operand + second operand
+                                       result.value = sum(previousResult, parseFloat(result.value));
+                                        // result.value = parseFloat(previousResult) + parseFloat(result.value);
+                                        break;
+                                   case '-':
+                                        result.value = diff(previousResult, parseFloat(result.value));
+                                       
+                                        break;
+                                   case '*': 
+                                   result.value = mul(previousResult, parseFloat(result.value));
+                                        break;
+                                   case '/': 
+                                   result.value = div(previousResult, parseFloat(result.value));
+                                        break;
+                                    default: 
+                                        console.log('Default Case!');
+                                }
+                                break;
+
+                             case 'C': // reseting everything
+                                console.log("I'm the C button!")
+                                result.value="0"
+                                previousResult = 0;
+                                break;
+
+                            default:
+                                 previousResult = parseFloat(result.value);//saving first operand
+                                 operation = keyPressed;//saving operation
+                                 result.value = ""; // reset to null to let user type second operand
+                              
+                             
+                             
+                         }  
                      }
 
                      const numericButtons = document.getElementsByClassName("numericButton");
@@ -120,6 +179,10 @@
 
                     for(let button of numericButtons) {
                         button.addEventListener('click', numericButtonPressed)
+                    }
+
+                    for(let button of functionButtons) {
+                        button.addEventListener('click', functionButtonPressed)
                     }
              });
 
