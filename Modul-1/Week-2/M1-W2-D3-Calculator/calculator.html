@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Calculator </title>
+        <style>
+          body {
+              background-color: rgba(7, 12, 7, 0.966);
+          }
+
+          #calculator {
+              height: 100vh;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+          }
+
+        input[type=button] {
+            font-size: 30px;
+            width:50px;
+            height:50px;
+        }
+
+        #result {
+            font-size:50px;
+            text-align:right;
+            width:100%;
+            max-width:210px;
+
+        }
+
+        .numericButton {
+            color:rgb(18, 85, 5);
+            background-color:rgba(130, 170, 125, 0.911);
+        }
+
+        .functionButton {
+            color:rgb(123, 128, 124);
+            background-color: rgb(54, 4, 25);
+        }
+
+        </style>
+    </head>
+
+<body>
+  <div id="calculator">
+    <table>
+       <tr>
+           <td colspan="4">
+               <input type="text" id="result" value="0" disabled />
+           </td>
+       </tr>
+
+       <tr>
+           <td><input type="button" class="numericButton" value="7" /></td>
+           <td><input type="button" class="numericButton" value="8" /></td>
+           <td><input type="button" class="numericButton" value="9" /></td>
+           <td><input type="button" class="functionButton" value="*" /></td>
+       </tr>
+
+       <tr>
+        <td><input type="button" class="numericButton" value="4" /></td>
+        <td><input type="button" class="numericButton" value="5" /></td>
+        <td><input type="button" class="numericButton" value="6" /></td>
+        <td><input type="button" class="functionButton" value="-" /></td>
+    </tr>
+
+    <tr>
+        <td><input type="button" class="numericButton" value="1" /></td>
+        <td><input type="button" class="numericButton" value="2" /></td>
+        <td><input type="button" class="numericButton" value="3" /></td>
+        <td><input type="button" class="functionButton" value="+" /></td>
+    </tr>
+
+    <tr>
+        <td><input type="button" class="functionButton" value="C" /></td>
+        <td><input type="button" class="numericButton" value="0" /></td>
+        <td><input type="button" class="functionButton" value="/" /></td>
+        <td><input type="button" class="functionButton" value="=" /></td>
+    </tr>
+
+
+    </table>
+ </div> 
+
+</body>
+</html>
