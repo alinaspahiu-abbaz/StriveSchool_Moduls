@@ -98,6 +98,7 @@
            // Memory of our calculator
              let operation = "";
              let previousResult = 0; //First Oper   
+     
               
             //funksioni per shumen
               const sum = function(x,y) { // const sum=(x,y)=>  
@@ -111,9 +112,11 @@
             // funksioni per shumzimin:
                const mul = function(x,y) {
              return x * y;
+               }
        
          const div = function(x,y) {
              return x / y;
+             }
          
          // Funksioni per Fuqine
          // const pow = (x,y) =>Math.pow(x,y) <-- Easy version
@@ -123,6 +126,7 @@
                    result *= base
                }
                return result;
+           }
        
        // Factorial rescursive version
          const factorial = n => {
@@ -132,7 +136,7 @@
              }
 
         // Funksioni i rrenjes katrore
-        const squareRoot = x => Math.sqrt()   
+        const squareRoot = x => Math.sqrt(x)   
 
         // decimal function '.'
         const inputDecimal = x => !x.includes('.') ? `${x}.`:`${x}`
@@ -149,8 +153,9 @@
                      result.value = result.value + numberPressed;//concatinating the numbers - bashkim i numrave
                      }
             }
+
         // kur shtypim = - * / C = etj
-          const functionButtonPressed = function (event) {
+        const functionButtonPressed = function (event) {
         const keyPressed = event.target.value;
         console.log(keyPressed);
         const result = document.getElementById('result');
@@ -224,7 +229,7 @@
                     for(let button of functionButtons) {
                         button.addEventListener('click', functionButtonPressed)
                     }
-             });
+       });
 
 
  </script>
