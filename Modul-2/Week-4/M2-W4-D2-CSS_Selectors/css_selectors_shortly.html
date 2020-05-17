@@ -11,7 +11,7 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    body>
+    
     <Style>
         /*  1. Create boxes around each number: */
         #first .col div{
@@ -34,10 +34,16 @@
               border-radius: 20px;
           }
 
-          #first .col
+          /* 3. Changeing the background color of a button */
+          #second  .btn.btn-secondary.active {
+            background-color: darkorange !important;
+          }
+
+         
     </Style>
+     <h1 class="font-weight-bolder mt-5 mb-4">CSS Selectors</h1>
     <div class="container">
-      <h1 class="font-weight-bolder mt-5 mb-4">CSS Selectors</h1>
+     
       <div class="row mb-5">
         <div class="col-8">
           <div class="container">
@@ -54,6 +60,28 @@
               <div class="col"><div>10</div></div>
               <div class="col"><div>11</div></div>
               <div class="col"><div>12</div></div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+ <!-- ex. 3: -->
+       <div class="row">
+        <div id="second" class="row py-4 ml-3 mt-3 border rounded bg-light" >
+          <div class="col">
+            <div id="third" class="row justify-content-center no-gutters">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary active">
+                  <input type="radio" name="options" id="option1" checked />
+                  Active
+                </label>
+                <label class="btn btn-secondary">
+                  <input type="radio" name="options" id="option2" /> Radio
+                </label>
+                <label class="btn btn-secondary">
+                  <input type="radio" name="options" id="option3" /> Radio
+                </label>
+              </div>
             </div>
           </div>
         </div>
