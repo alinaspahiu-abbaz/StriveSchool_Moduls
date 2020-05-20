@@ -72,13 +72,22 @@ console.log("New Surname: ", user.surname);
 delete user.address;
 
 console.log(Object.keys(user))// reciving back an array of string with the propertys of object.
+console.log(user['name']);//another way how to get the name.
+console.log(user['phoneNumbers'].length);
+
+// ARRAYS
 
 console.log(Object.keys(user).length);
 
 const userList =[user, user2];
- console.log("First element name: ", userList[0].name);
- console.log("Second element name: ", userList[1].name);
+console.log("First user Lists elements name: ", userList[0]);
+console.log("Second user Lists elements name: ", userList[1]);
+console.log("Third user Lists elements name: ", userList[2]); // del: undefined
 
- if (userList[2] === undefined) {
-     console.log("Third element name: ", userList [2].name);
- }
+// Nese kerkojme vetem name te secila list:
+console.log("First user Lists elements name: ", userList[0].name);
+console.log("Second user Lists elements name: ", userList[1].name);
+
+if(userList[2] !==undefined) {
+console.log("Third user Lists elements name: ", userList[2].name); //del error. dhe e nderpret kodin.
+}
