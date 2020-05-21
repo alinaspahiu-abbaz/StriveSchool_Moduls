@@ -39,8 +39,17 @@ ajaxRequest('http://someurl.com', function myCallBack(err, data) {
    rejected -you get something back, but that something is an error.
    */
 
-   /* How to create a Promise - we will learn it later
+   /* 
+   How to create a Promise - we will learn it later
+   
    const promise = new Promise((resolve, reject) => {
 
    });
    */
+
+   // async situation
+   getUser('URL')
+      .then( user => { // here the promise is resolved
+        console.log(user);
+
+   }).cath(err => console.log(errr)); // here the promise is rejected

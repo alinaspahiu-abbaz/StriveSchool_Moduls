@@ -87,6 +87,7 @@ console.log("Third user Lists elements name: ", userList[2]); // del: undefined
 // Nese kerkojme vetem name te secila list:
 console.log("First user Lists elements name: ", userList[0].name);
 console.log("Second user Lists elements name: ", userList[1].name);
+// console.log("Third user Lists elements name: ", userList[2].name); //del error. dhe e nderpret kodin.
 
 if(userList[2] !==undefined) {
 console.log("Third user Lists elements name: ", userList[2].name); //del error. dhe e nderpret kodin.
