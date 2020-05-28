@@ -104,7 +104,31 @@
       </div>
     </div>
     <script src="./helper.js"></script>
-   
+    <script>
+      handleSubmit = () => {
+        event.preventDefault();
+        submitEvent();
+      };
+
+      submitEvent = async () => {
+        let myEvent = {
+          name: document.querySelector("#name").value,
+          description: document.querySelector("#description").value,
+          time: document.querySelector("#time").value,
+          price: document.querySelector("#price").value,
+        };
+        console.log("MYEVENT", myEvent);
+
+        let response = await saveEvent(myEvent);
+        console.log("RESPONSE FROM THE saveEvent", response);
+        if (response.ok) {
+          alert("Event created successfully");
+          location.assign("index.html");
+        } else {
+          alert("Event NOT created succesfully");
+        }
+      };
+    </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
