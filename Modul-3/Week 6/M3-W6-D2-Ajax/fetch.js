@@ -9,6 +9,8 @@
    rejected -you get something back, but that something is an error.
    */
 
+   //----------------------------------------------------------------
+
    /* 
    How to create a Promise - we will learn it later
    
@@ -17,22 +19,24 @@
    });
    */
 
-   // async situation
-  //  getUser('URL')
-  //     .then( user => { // here the promise is resolved
-  //       console.log(user);
+   //------------------------------------------------------------------
 
-  //  }).cath(err => console.log(errr)); // here the promise is rejected
+  // async situation
+   getUser('URL')
+      .then( user => { // here the promise is resolved
+        console.log(user);
 
-  // getUser('URL')
-  // .then((user) => getBlogPosts('URL' + user.name))
-  // .then(blogPosts => getComments('URL' + blogPosts[0]))
-  // .then(comments => {
-  //   // here I can handle comments -> we can modify DOM with comments data
-  //   console.log(comments)
-  // })
-  // .catch((err) => console.log(err)); 
+   }).cath(err => console.log(errr)); // here the promise is rejected
 
-  // Fetch API
+//   getUser('URL')
+//   .then((user) => getBlogPosts('URL' + user.name))
+//   .then(blogPosts => getComments('URL' + blogPosts[0]))
+//   .then(comments => {
+//     // here I can handle comments -> we can modify DOM with comments data
+//     console.log(comments)
+//   })
+//   .catch((err) => console.log(err)); 
+
+//   //Fetch API
   
-   fetch('http://example.com/movies.json').then((response) => console.log(response));
+//    fetch('http://example.com/movies.json').then((response) => console.log(response));
