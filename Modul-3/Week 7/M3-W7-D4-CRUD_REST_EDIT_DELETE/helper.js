@@ -10,6 +10,7 @@ const saveEvent = async (agendaEvent) => {
     method: "POST",
     body: JSON.stringify(agendaEvent),
     headers: new Headers({
+    
       "Content-Type": "application/json",
     }),
   });
