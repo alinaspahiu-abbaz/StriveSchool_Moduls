@@ -140,8 +140,11 @@
     </section>
 
 <script>
+  // fetch("https://jsonplaceholder.typicode.com/users")// giving the fetch
+  // .then(response => response.json(console.log(response)))// and waiting for response
    function loadData() {
      // Name:
+
       fetch("https://jsonplaceholder.typicode.com/users")
       .then(response => response.json(console.log(response)))
       .then(parsedJson => { // parsedJson is a list of Users as an Array
@@ -153,57 +156,57 @@
             const textNode = document.createTextNode(user.name)
             listElement.appendChild(textNode)
             list.appendChild(listElement)
-            //console.log('first user ', user.name)
+            console.log('first user ', user)
           })
-      }).catch(err => console.log(err))
+      })//.catch(err => console.log(err))
 
-      // Email:      
-      fetch("https://jsonplaceholder.typicode.com/users")
-      .then(response => response.json())
-      .then(parsedJson => { // parsedJson is a list of Users as an Array
+      // // Email:      
+      // fetch("https://jsonplaceholder.typicode.com/users")
+      // .then(response => response.json())
+      // .then(parsedJson => { // parsedJson is a list of Users as an Array
           
-        const list = document.getElementById("myStuff3")
+      //   const list = document.getElementById("myStuff3")
   
-          parsedJson.forEach(user => {
-            const listElement = document.createElement('li')
-            const textNode = document.createTextNode(user.email)
-            listElement.appendChild(textNode)
-            list.appendChild(listElement)
-            console.log('first user ', user.email)
-          })
-      }).catch(err => console.log(err))
+      //     parsedJson.forEach(user => {
+      //       const listElement = document.createElement('li')
+      //       const textNode = document.createTextNode(user.email)
+      //       listElement.appendChild(textNode)
+      //       list.appendChild(listElement)
+      //       console.log('first user ', user.email)
+      //     })
+      // }).catch(err => console.log(err))
 
-      // ID:      
-      fetch("https://jsonplaceholder.typicode.com/users")
-      .then(response => response.json())
-      .then(parsedJson => { // parsedJson is a list of Users as an Array
+      // // ID:      
+      // fetch("https://jsonplaceholder.typicode.com/users")
+      // .then(response => response.json())
+      // .then(parsedJson => { // parsedJson is a list of Users as an Array
           
-        const list = document.getElementById("myStuff")
+      //   const list = document.getElementById("myStuff")
   
-          parsedJson.forEach(user => {
-            const listElement = document.createElement('li')
-            const textNode = document.createTextNode(user.id)
-            listElement.appendChild(textNode)
-            list.appendChild(listElement)
-            //console.log('first user ', user.id)
-          })
-      }).catch(err => console.log(err))
+      //     parsedJson.forEach(user => {
+      //       const listElement = document.createElement('li')
+      //       const textNode = document.createTextNode(user.id)
+      //       listElement.appendChild(textNode)
+      //       list.appendChild(listElement)
+      //       //console.log('first user ', user.id)
+      //     })
+      // }).catch(err => console.log(err))
 
-      // Phone:      
-      fetch("https://jsonplaceholder.typicode.com/users")
-      .then(response => response.json())
-      .then(parsedJson => { // parsedJson is a list of Users as an Array
+      // // Phone:      
+      // fetch("https://jsonplaceholder.typicode.com/users")
+      // .then(response => response.json())
+      // .then(parsedJson => { // parsedJson is a list of Users as an Array
           
-        const list = document.getElementById("myStuff2")
+      //   const list = document.getElementById("myStuff2")
   
-          parsedJson.forEach(user => {
-            const listElement = document.createElement('li')
-            const textNode = document.createTextNode(user.phone)
-            listElement.appendChild(textNode)
-            list.appendChild(listElement)
-            //console.log('first user ', user.phone)
-          })
-      }).catch(err => console.log(err))
+      //     parsedJson.forEach(user => {
+      //       const listElement = document.createElement('li')
+      //       const textNode = document.createTextNode(user.phone)
+      //       listElement.appendChild(textNode)
+      //       list.appendChild(listElement)
+      //       //console.log('first user ', user.phone)
+      //     })
+      // }).catch(err => console.log(err))
       
             
     
