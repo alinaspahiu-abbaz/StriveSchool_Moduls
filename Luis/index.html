@@ -16,67 +16,21 @@
 <body class="bg-dark text-white">
     <div class="container ">
         <div class="row wrapper">
-            <div id="name" class="col-12 col-md-6">
+            <div id="name" class="col-12 col-md-4">
                 <h1> Name: </h1>
             </div>
-            <div id="email" class="col-12 col-md-6">
+            <div id="email" class="col-12 col-md-4">
                 <h1> Email: </h1>
+            </div>
+            <div id="email" class="col-12 col-md-4">
+                <h1> Company: </h1>
             </div>
         </div>
     </div>
 
 
-<script>
-   
-let wrapper = document.querySelector(".wrapper")
-    window.onload = async function () {
-       let response = await fetch(" https://jsonplaceholder.typicode.com/users")
-       let users = await response.json()
-       //console.log(users)
 
-//------------- GOOD -------------
-    // for (let user of users) {
-    //     console.log(user.name);
-    //     // same as console.log(user[name]);
-                
-    //     wrapper.innerHTML += `<div class="col-12 col-md-6"
-    //     <span>${user.name} </span>
-    //     </div>
-    //     <div class="col-12 col-md-6"
-    //     <span>${user.email} </span>
-    //     </div>
-    //     `
-    // }
-//------------ Finish ----------
-    
-    fetch(" https://jsonplaceholder.typicode.com/users")
-        .then(response => response.json())
-        .then(users => {
-             for (let user of users) {
-                console.log(user.name);
-                // same as console.log(user[name]);
-                
-                wrapper.innerHTML += `<div class="col-12 col-md-6"
-                <span>${user.name} </span>
-                </div>
-                <div class="col-12 col-md-6"
-                <span>${user.email} </span>
-                </div>
-                `
-
-    }
-// for(let i=0; i<user.length; i++) { ... }
-// users.forEach(users => { ... })
-
-          
-           })
-        }
-
-        // let string = "string";
-        // let string2 = "string2";
-
-        // let string3 = '${string} ${string2}'
-    </script>
+    <script src="promises.js"></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
