@@ -2,7 +2,7 @@
     {
       "id": 0,
       "name": "Carbonara",
-      "image": "/img/1.jpg",
+      "image": "../img/1.jpg",
       "category": "mains",
       "label": "Fat",
       "price": "7.99",
@@ -27,7 +27,7 @@
     {
       "id": 1,
       "name": "Amatriciana",
-      "image": "/img/2.jpg",
+      "image": "../img/2.jpg",
       "category": "mains",
       "label": "Spicy",
       "price": "6.99",
@@ -45,7 +45,7 @@
     {
       "id": 2,
       "name": "Cacio & Pepe",
-      "image": "/img/3.jpg",
+      "image": "../img/3.jpg",
       "category": "mains",
       "label": "Cheesy",
       "price": "7.99",
@@ -70,7 +70,7 @@
     {
       "id": 3,
       "name": "Gricia",
-      "image": "/img/2.jpg",
+      "image": "../img/4.jpg",
       "category": "mains",
       "label": "Fat+",
       "price": "8.99",
@@ -102,7 +102,7 @@
     {
       "id": 4,
       "name": "Scogliera",
-      "image": "/img/2.jpg",
+      "image": "../img/5.jpg",
       "category": "seafood",
       "label": "Summer",
       "price": "7.99",

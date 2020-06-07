@@ -1,10 +1,9 @@
-  
-import React, { Component } from "react";
+import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 
 const NavBar = (props) => {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="dark" variant='dark' expand="lg">
       <Navbar.Brand href="#home">
         {props.title} - Striving For Food
       </Navbar.Brand>
