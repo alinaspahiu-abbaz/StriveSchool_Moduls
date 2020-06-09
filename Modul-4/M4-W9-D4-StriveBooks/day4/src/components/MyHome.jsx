@@ -25,6 +25,10 @@ class MyHome extends React.Component {
 
   }
 
+  // state= { 
+  //         books: books.horror.slice(0,6),
+  //         categorySelected: "horror"
+  //        }
 
   //function
   handleDropdownChange = (category) => {
