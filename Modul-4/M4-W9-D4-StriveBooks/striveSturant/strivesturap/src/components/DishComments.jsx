@@ -46,4 +46,4 @@ class DishComments extends React.Component {
   }
 }
 
-export default DishComments;
+export default DishComments; 
