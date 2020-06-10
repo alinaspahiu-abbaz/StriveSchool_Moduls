@@ -3,6 +3,7 @@ import { Container, Row, Col, Carousel } from "react-bootstrap";
 import items from "../data/menu.json";
 import DishComments from './DishComments';
 import Reservations from './Reservations';
+import ReservationForm from './ReservationForm'
 
 
 class Home extends Component {
@@ -57,6 +58,12 @@ class Home extends Component {
         <Row>
           <Col xs={12}> 
             <Reservations />
+          </Col>
+        </Row>
+
+        <Row>
+          <Col xs={12}> 
+            <ReservationForm />
           </Col>
         </Row>
         </Container>
