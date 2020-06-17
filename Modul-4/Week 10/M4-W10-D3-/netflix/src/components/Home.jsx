@@ -59,11 +59,11 @@ class Home extends Component {
     Authorization: "Basic dXNlcjc6M1VVNWRZRnZ1blJ1U1A3RQ==",
   }),
 })
-const response = await comments.json();
-console.log(response);
+    const response = await comments.json();
+    console.log(response);
   }
 
-  //fetchComments(movie.id)
+  
 
 
   render() {
