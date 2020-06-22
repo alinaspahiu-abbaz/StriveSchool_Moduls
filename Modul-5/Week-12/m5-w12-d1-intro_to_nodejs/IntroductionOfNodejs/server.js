@@ -1,4 +1,5 @@
 const http = require('http');
+const handler = require('./library/handlers') //importing the file
 
 const hostname = '127.0.0.1';
 const port = 3000;
