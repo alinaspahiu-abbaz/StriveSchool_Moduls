@@ -67,25 +67,65 @@ router.post("/", (request, response)=>{
     const usersArray = JSON.parse(fileContentAsABufer.toString())
 
     // b. adding the new element(in this case user) to the array
-    const newId = uniqid()
+       // const newId = uniqid()
     usersArray.push(newUser)
-  //  console.log(usersArray)
+       //  console.log(usersArray)
     // c. writing the new content into the same file
-    fs.writeFileSync(usersFilePath), JSON.stringify(usersArray)
+    fs.writeFileSync(usersFilePath, JSON.stringify(usersArray))
 
     // d. respondeing with the status 201 which means "created"
-    response.send(newUser)
+    response.status(201).send(newUser)
 
 
 })
 
 
 //Route number 4.
-router.put('/:id', (request, response)=>{ })
+router.put("/:id", (request, response) => {
+    // 1. read the content of the file and get back an array of users
+  
+    const fileContentAsABuffer = fs.readFileSync(usersFilePath)
+    const usersArray = JSON.parse(fileContentAsABuffer.toString())
+  
+    // 2. filter users by excluding the one with specified id
+    const filteredUsersArray = usersArray.filter(
+      (user) => user.id !== request.params.id
+    )
+  
+    // 3. adding back the user with the modified body
+    const user = request.body // request.body is holding the new data for the specified user
+    user.id = request.params.id
+  
+    filteredUsersArray.push(user)
+  
+    // 4. write it back into the same file
+  
+    fs.writeFileSync(usersFilePath, JSON.stringify(filteredUsersArray))
+  
+    // 5. respond back with ok
+    response.send("Ok")
+  })
 
 
 //Route number 5.
-router.delete('/:id', (request, response)=>{ })
+router.delete("/:id", (request, response) => {
+    // 1. read the content of the file and get back an array of users
+  
+    const fileContentAsABuffer = fs.readFileSync(usersFilePath)
+    const usersArray = JSON.parse(fileContentAsABuffer.toString())
+  
+    // 2. filter users by excluding the one with specified id
+    const filteredUsersArray = usersArray.filter(
+      (user) => user.id !== request.params.id
+    )
+  
+    // 3. write the filterd content back into the same file
+  
+    fs.writeFileSync(usersFilePath, JSON.stringify(filteredUsersArray))
+    // 4. respond with ok
+  
+    response.send("Ok")
+  })
 
 
 
