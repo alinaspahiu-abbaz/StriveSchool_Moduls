@@ -18,7 +18,7 @@ const router = express.Router()
 const usersFilePath = path.join(__dirname, 'users.json')
 
 router.get("/", (request, response)=>{ //(request, response) => is the handler for this specific route
-
+ 
     // a) retrive users list from a file on disk(bc we dont have a reale database yet.)
 
    // const fileContent = fs.readFileSync()
