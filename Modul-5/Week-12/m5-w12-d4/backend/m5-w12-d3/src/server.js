@@ -1,7 +1,9 @@
 const express = require("express")
 const listEndpoints = require("express-list-endpoints")
+const {join} = require("path")
 const usersRouter = require("./services/users")
 const moviesRouter = require("./services/movies")
+const filesRouter = require('./services/files')
 const problematicRoutes = require("./services/problematicRoutes")
 const {notFoundHandler, unauthorizedHandler, forbiddenHandler,
   catchAllHandler} = require("./services/errorHandling")
@@ -15,15 +17,17 @@ const loggerMiddleware = (req, res, next) => {
   next()
 }
 
-const errorMiddleware = (err, req, res, next) => {}
+const publicFolderPath = join(__dirname, '../public')
 
-server.use(express.json()) // Built in middleware
+server.use(express.static(publicFolderPath))
+server.use(express.json()) // Built in middleware to parse application/json bodies
 server.use(loggerMiddleware)
 
 // ROUTES
 server.use("/users", usersRouter)
 server.use("/movies", moviesRouter)
 server.use("/problems", problematicRoutes)
+server.use('/files', filesRouter)
 
 //Error Handlers
 server.use(notFoundHandler)
