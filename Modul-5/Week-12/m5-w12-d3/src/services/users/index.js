@@ -27,4 +27,12 @@ router.get("/", (req, res) => {
             console.log(usersDB)}
 })
 
+
+
+// GET all
+
+router.get("/:idu", (req, res) => {
+  // GET http://localhost:3001/users/12
+  
+})
 module.exports = router
