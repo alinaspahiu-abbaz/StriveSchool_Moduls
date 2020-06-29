@@ -3,6 +3,9 @@ const listEndpoints = require("express-list-endpoints")
 const usersRouter = require("./services/users")
 const moviesRouter = require("./services/movies")
 const problematicRoutes = require("./services/problematicRoutes")
+const {
+  notFoundHandler, unauthorizedHandler, 
+  forbiddenHandler, catchAllHandler} = require("./errorHandling")
 
  
 const server = express()
@@ -27,6 +30,12 @@ server.use(loggerMiddleware)
 server.use("/users", usersRouter)
 server.use("/movies", loggerMiddleware, moviesRouter)// dhe kjo vlen vetem per movies
 server.use("/problems", problematicRoutes)
+
+// Error Handlers - we have to put them after everything else
+server.use(notFoundHandler)
+server.use(unauthorizedHandler)
+server.use(forbiddenHandler)
+server.use(catchAllHandler)
 
 console.log(listEndpoints(server))
 server.listen(port, () => {
