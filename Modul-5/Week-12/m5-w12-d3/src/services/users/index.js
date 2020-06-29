@@ -3,6 +3,8 @@ const fs = require("fs")
 const path = require("path")
 const uniqid = require("uniqid")
 
+const {check, validationResult} = require("express-validator")
+
 const router = express.Router()
 
 const readFile = (fileName) => {
@@ -31,27 +33,53 @@ router.get("/", (req, res) => {
 
 // GET 
 
-router.get("/:idu", (req, res) => {
+router.get("/:idu", (req, res, next) => {
   // GET http://localhost:3001/users/12
-  
-  const usersDB = readFile("users.json")
-  const retrivedUser = usersDB.filter((user) => user.ID === req.params.idu)
-  res.send(retrivedUser)
+  try{
+       const usersDB = readFile("users.json")
+       const user = usersDB.filter((user) => user.ID === req.params.idu)
+       res.send(user) //if user.length===0
+     } catch(error){
+                      error.httpStatusCode = 404
+                      next(error) // next is sending the error to errorHandler
+                   }
 
 })
 
 // POST
 
-router.post("/", (req, res) => {
+router.post("/", 
+    [
+       check("name")
+         .isLength({min: 4}).withMessage("Name is too short!")
+         .exists().withMessage("Insert a name please!")
+    ],
+  (req, res, next) => {
   // POST http://localhost:3001/users/
-  
-  const usersDB = readFile("users.json")
+  try{
+    const errors = validationResult(req)
+      if(!errors.isEmpty()) {
+        let err = new Error()
+        err.message = errors
+        httpStatusCode = 400
+        next(err) // I'm sending validation errors to the middleware
+      }
+
+    const usersDB = readFile("users.json")
   const newUser = {...req.body, ID: uniqid(), createdAt: new Date() }
 
   usersDB.push(newUser)
 
   fs.writeFileSync(path.join(__dirname, "users.json"), JSON.stringify(usersDB))
   res.status(201).send(newUser)
+
+  }
+  catch(error){
+    next(error)
+
+  }
+  
+
 
 })
 
