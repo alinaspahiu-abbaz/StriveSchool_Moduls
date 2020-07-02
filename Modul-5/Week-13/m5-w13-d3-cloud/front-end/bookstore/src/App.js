@@ -4,6 +4,8 @@ import { Container, Row, Col } from "react-bootstrap"
 import Navigation from "./components/Navigation"
 import {BrowserRouter as Router, Link, Switch, Route} from "react-router-dom"
 import HomePage from "./components/HomePage"
+import BackOffice from './components/BackOffice';
+import EditBook from "./components/EditBook"
 
 
 class App extends React.Component {
@@ -23,10 +25,10 @@ class App extends React.Component {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/details/:asin">
-            <div> Details for a single book</div>
+            <EditBook />
           </Route>
           <Route path="/backoffice">
-            <div> Delete / Edit / Create</div>
+            <BackOffice />
           </Route>
           <Route path="/" exact>
             <HomePage />
