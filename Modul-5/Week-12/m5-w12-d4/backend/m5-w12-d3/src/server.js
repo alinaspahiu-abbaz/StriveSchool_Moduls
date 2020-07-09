@@ -3,10 +3,11 @@ const listEndpoints = require("express-list-endpoints")
 const {join} = require("path")
 const usersRouter = require("./services/users")
 const moviesRouter = require("./services/movies")
-const filesRouter = require('./services/files')
+const router = require('./services/files')
 const problematicRoutes = require("./services/problematicRoutes")
 const {notFoundHandler, unauthorizedHandler, forbiddenHandler,
   catchAllHandler} = require("./services/errorHandling")
+
  
 const server = express()
 
@@ -27,7 +28,7 @@ server.use(loggerMiddleware)
 server.use("/users", usersRouter)
 server.use("/movies", moviesRouter)
 server.use("/problems", problematicRoutes)
-server.use('/files', filesRouter)
+server.use('/files', router)
 
 //Error Handlers
 server.use(notFoundHandler)
