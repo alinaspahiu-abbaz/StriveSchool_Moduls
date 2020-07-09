@@ -1,0 +1,46 @@
+1. 22.06.2020 - E hene:
+   - Hyrje ne Node.js
+
+2. 23.06.2020 - E marte:
+   - Implementimi i CRUD.
+
+3. 24.06.2020 - E merkure: 
+ --> Video I:
+   - GitIgnore, Env.
+   - Implementimi i CRUD, readFile si funksion - 24.00
+   - Getting users filtering by name with param querry - 36.00
+
+ --> Video II:
+   - List Endpoints,
+   - Debuggging - 02:30
+   - MiddleWare - 15:30
+   - Problematic Routes - 34:00
+
+ --> Video III:
+   - Error Handler
+   - Validators - 28:00
+
+4. 25.06.2020 - e Enjte:
+ --> Video I:
+    - Upload one photo 
+ --> Video II:
+    - Upload two or more photos 
+
+   router.get("/", (req, res) => {
+  const usersDB = readFile("users.json")
+
+  if(req.query && req.query.name){
+    const filteredUsers = usersDB.filter
+    (user => user.hasOwnProperty("name")
+     && user.name===req.query.name )
+
+     res.send("ok")
+     console.log(filteredUsers)
+   } 
+   
+   else{ res.send(usersDB) 
+            console.log(usersDB)}
+})
+
+ "dev": "nodemon -r dotenv/config ./src/server.js",
+    "debug": "nodemon --inspect -r dotenv/config ./src/server.js"
