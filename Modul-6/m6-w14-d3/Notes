@@ -1,0 +1,24 @@
+ npm i query-to-mongo
+ const q2m = require("query-to-mongo")
+
+ npm i validator
+
+ POSTMAN:
+ http://localhost:3022/users?offset=2
+ http://localhost:3022/users?sort=-name
+ http://localhost:3022/users?limit=2
+ http://localhost:3022/users?name=Alina
+
+ 10.43 - validators documentation
+
+
+ MONGODB:
+{"age":{$gt:24}}
+
+
+LINKS:
+Mongoose Validation:
+https://mongoosejs.com/docs/validation.html#validation
+
+Queries:
+https://docs.mongodb.com/manual/reference/operator/query/
