@@ -2,7 +2,6 @@ const express = require("express")
 const fs = require("fs")
 const path = require("path")
 const uniqid = require("uniqid")
-
 const {check, validationResult} = require("express-validator")
 
 const router = express.Router()
@@ -13,6 +12,7 @@ const readFile = (fileName) => {
   return JSON.parse(fileContent)
 }
 
+// Get all: 
 router.get("/", (req, res) => {
   const usersDB = readFile("users.json")
 
@@ -26,7 +26,7 @@ router.get("/", (req, res) => {
    } 
    
    else{ res.send(usersDB) 
-            console.log(usersDB)}
+            console.log("OK")}
 })
 
 
@@ -38,6 +38,7 @@ router.get("/:idu", (req, res, next) => {
   try{
        const usersDB = readFile("users.json")
        const user = usersDB.filter((user) => user.ID === req.params.idu)
+       if(user){}
        res.send(user) //if user.length===0
      } catch(error){
                       error.httpStatusCode = 404
