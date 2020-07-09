@@ -44,12 +44,12 @@ router.get("/:id", (request, response)=>{
     
     const fileContentAsABufer = fs.readFileSync(usersFilePath)
     const usersArray = JSON.parse(fileContentAsABufer.toString())
-    console.log(usersArray)
+    
 
       // b. filter out the array to retrive the specified user(we're gonna be using id to retrive the unique user)
     
-    console.log("ID: ", request.params.id)
-    const user = usersArray.filter((user)=> user.id=== parseInt(request.params.id))
+   
+    const user = usersArray.filter((user)=> user.id === (request.params.id))
     console.log(user)
 
       // c. send the user back into the response
