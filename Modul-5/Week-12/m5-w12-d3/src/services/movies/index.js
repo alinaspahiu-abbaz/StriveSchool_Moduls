@@ -19,11 +19,11 @@ router.get("/:id", (req, res) => {
 
 router.get("/", (req, res) => {
   const moviesDB = readFile("movies.json")
-  if (req.query && req.query.name) {
+  if (req.query && req.query.category) {
     const filteredMovies = moviesDB.filter(
       (movie) =>
-        movie.hasOwnProperty("name") &&
-        movie.name.toLowerCase() === req.query.name.toLowerCase()
+        movie.hasOwnProperty("category") &&
+        movie.category.toLowerCase() === req.query.category.toLowerCase()
     )
     res.send(filteredMovies)
   } else {
