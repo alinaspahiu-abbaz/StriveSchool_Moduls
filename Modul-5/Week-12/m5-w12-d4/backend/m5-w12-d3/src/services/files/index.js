@@ -1,8 +1,8 @@
 const express = require("express")
 const multer = require("multer")
-const fs=require('fs-extra')
+const fs = require('fs-extra')
 const {join} = require("path")
-const { writeFile } = require("fs-extra")
+const { writeFile, createReadStream } = require("fs-extra")
 
 const router = express.Router()
 
@@ -44,8 +44,17 @@ router.post(
     
 })
 
-//downloadnpm
-router.get('/upload', (req, res, next) => {
+// 3. Download
+router.get('/:name/download', (req, res, next) => {
+    // file as a stream is our source --> response (destination)
+    const source = createReadStream(join(studentsFolderPath), `${req.params.name}`)
+    
+    res.setHeader("Content-Disposition", `attachment: filename=${req.params.name}`)
+    source.pipe(res)
+
+    source.on("error", (error) => {
+        next(error)
+      })
     
 })
 
