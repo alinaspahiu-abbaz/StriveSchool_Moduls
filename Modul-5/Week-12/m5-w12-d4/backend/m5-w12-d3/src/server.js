@@ -7,7 +7,7 @@ const router = require('./services/files')
 const problematicRoutes = require("./services/problematicRoutes")
 const {notFoundHandler, unauthorizedHandler, forbiddenHandler,
   catchAllHandler} = require("./services/errorHandling")
-
+const cors = require("cors")
  
 const server = express()
 
@@ -20,6 +20,7 @@ const loggerMiddleware = (req, res, next) => {
 
 const publicFolderPath = join(__dirname, '../public')
 
+server.use(cors())
 server.use(express.static(publicFolderPath))
 server.use(express.json()) // Built in middleware to parse application/json bodies
 server.use(loggerMiddleware)
