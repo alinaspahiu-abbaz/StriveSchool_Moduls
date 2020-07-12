@@ -47,15 +47,22 @@ router.post(
 // 3. Download
 router.get('/:name/download', (req, res, next) => {
     // file as a stream is our source --> response (destination)
-    const source = createReadStream(join(studentsFolderPath), `${req.params.name}`)
+    const source = createReadStream(join(studentsFolderPath, `${req.params.name}`))
     
-    res.setHeader("Content-Disposition", `attachment: filename=${req.params.name}`)
-    source.pipe(res)
+    res.setHeader(
+        "Content-Disposition",
+        `attachment; filename=${req.params.name}`
+                  //attachment: filename e hap ne browser
+                  //attachment; filename - e downloadon direkt
+        )
+    source.pipe(res)  
 
-    source.on("error", (error) => {
+    source.on("error", error => {
         next(error)
-      })
-    
+    })
 })
+
+
+
 
 module.exports = router
