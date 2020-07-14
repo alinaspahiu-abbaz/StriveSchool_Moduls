@@ -21,4 +21,5 @@ const userSchema = new Schema({
   professions: Array,
 })
 
+// exportin model and not the all Schema
 module.exports = model("user", userSchema)
