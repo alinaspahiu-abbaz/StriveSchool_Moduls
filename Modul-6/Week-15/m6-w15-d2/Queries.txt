@@ -1,0 +1,9 @@
+1. SELECT asin, category, img, title, price
+	FROM public."Books";
+	
+2. INSERT INTO "Books" (ASIN, category, Img, Title, Price) 
+   VALUES('1940026091', 
+          'scifi', 
+	   'https://images-na.ssl-images-                         amazon.com/images.I.91xrEMcvmQL.jpg',
+	   'Pandemic(The Extinction Files, Book 1)',
+           7.81)
