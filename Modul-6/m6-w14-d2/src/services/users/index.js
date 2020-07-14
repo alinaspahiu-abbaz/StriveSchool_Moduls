@@ -6,6 +6,7 @@ const usersRouter = express.Router()
 
 
 // 1. GET all:
+
 usersRouter.get("/", async (req, res, next) => {
   try{
       const usersList = await UserSchema.find(req.query, {email:1, name:2})
