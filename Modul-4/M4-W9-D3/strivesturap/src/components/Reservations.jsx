@@ -12,7 +12,7 @@ class Reservation extends React.Component {
                 <ListGroup> 
                     {
                     this.state.reservations.length >0 && this.state.reservations.map((reservation, i) =>
-                
+    
                         return(
                             <ListGroup.Item key={i}>
                                 From: {reservation.name}, 
