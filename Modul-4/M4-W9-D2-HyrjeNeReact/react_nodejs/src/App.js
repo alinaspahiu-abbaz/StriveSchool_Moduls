@@ -1,27 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import NewComponent from "./NewComponent"
 import MyComponent from './MyComponent';
 
+class App extends React.Component {
 
-function App() { 
-  return (
-    //this is a JSX
-    <div className="App">
-      <header className="App-header">
-        <MyComponent text="Some text" number={3}/>
-        <MyComponent text="other text" />
-        <MyComponent />
-        <img src={logo} className="App-logo" alt="logo" />
-           <p>Edit <code> Hiu</code> and save to reload</p>
-        <h3> This is my first test!</h3>
-      <a href="/"> Content </a>
-      <p>Hello Strivers!!</p>
+  state = {
+    listElements: []
+  }
 
-      </header>
-    </div>
-  );
+
+  addListElement = (input) => {
+    this.setState({ listElements: [... this.state.listElements, input] })
+  }
+
+  render() {
+    return <>
+      <div className="border">
+        <MyComponent text="Some text! " number={3} />
+      </div>
+
+      <div className="border">
+        <button type="button" onClick={() => this.addListElement('New!')}>ADD</button>
+        <NewComponent elements={this.state.listElements} />
+      </div>
+    </>
+  }
 }
 
 export default App;
