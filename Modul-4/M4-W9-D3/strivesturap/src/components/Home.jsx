@@ -13,7 +13,7 @@ class Home extends Component {
         <Container>
           <Row className="justify-content-center mt-3">
             <Col xs={6}>
-               <h1> Welcome to Strivesturant!</h1>
+    <h1> {this.state.title}</h1>
                <p className='lead'> The best dishes you can find on the wen</p>
                  <hr />
                  <p>Come visit use, we can only cook Pasa!</p>
