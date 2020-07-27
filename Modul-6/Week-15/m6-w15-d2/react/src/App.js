@@ -16,7 +16,7 @@ export default class App extends Component {
   }
   
   componentDidMount = async ()=>{
-    const res = await fetch("http://localhost:3022/books")
+    const res = await fetch("http://localhost:3023/books")
     //http://localhost:3032/students
     //http:&//localhost:5432/books
     const books = await res.json()
@@ -25,4 +25,3 @@ export default class App extends Component {
     })
   }
 }
-
