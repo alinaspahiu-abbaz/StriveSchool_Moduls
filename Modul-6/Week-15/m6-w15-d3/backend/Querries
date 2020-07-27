@@ -1,0 +1,43 @@
+SELECT  category, price, asin
+	FROM public."Books"
+	Where category = 'Education' AND price > 4
+	
+	SELECT  category, price, asin
+	FROM public."Books"
+	Where category = 'drame' OR category ='horror'
+	
+	
+	SELECT  category, price, asin
+	FROM public."Books"
+	Where (category = 'drame' AND price =10) 
+	    OR (category='horror' AND price >10)
+-- 	Kategori eshte Edukation dhe cmimi me i madh se 9 dhe me i vogel se 11
+	
+SELECT  category, price, asin
+	FROM public."Books"
+	Where category ='Education'
+	    AND (price>2 AND price <10)
+
+SELECT * FRom "Books"
+Where category = 'romance'AND price > 20
+
+-- Like Operator:
+-- %  gjitha fjalet qe kane ndermjet fjalen your
+-- 'the%' Te gjithe fjalet qe fillojne me The
+-- '%the' Te gjitha fjalet qe mbarojne me the
+SELECT * FRom "Books"
+WHERE title LIKE '%your%'
+
+
+-- ORDER nga z te a
+SELECT * FRom "Books"
+ORDER BY title DESC
+
+-- ORDER nga a te z
+SELECT * FRom "Books"
+ORDER BY title DESC
+
+-- LIMIT the result to 20 element
+SELECT * FRom "Books"
+ORDER BY title DESC
+LIMIT 5 OFFSET 5 --starting from elementit te 5-te, per 5 elemente
