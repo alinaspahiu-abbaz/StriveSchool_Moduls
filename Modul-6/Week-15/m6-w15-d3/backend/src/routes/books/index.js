@@ -1,52 +1,39 @@
 const express = require("express")
 const db = require("../../db")
-const books = require("../../../books.json")
+
 
 const bookRouter = express.Router()
 
-// bookRouter.post("/import", async (req, res) => {
-//     //retrieve previous ASINs
-//     const response = await db.query('SELECT asin  FROM "Books"')
+// 1. GET all Books:
+//--------------------
+// bookRouter.get("/", async(req, res) =>{
 
-//     //mapping them out as a list of strings
-//     const asinList = response.rows.map(x => x.asin)
-
-//     let total = 0
-//     let skipped = 0
-
-//     books.forEach(async book => { //for each book in the books.json
-//         if (asinList.indexOf(book.asin) === -1){ //if the books is NOT in the list
-//             //ADD IT to the Database
-//             await db.query(`INSERT INTO "Books" (ASIN, Category, Img, Title, Price) 
-//                                                 Values ($1, $2, $3, $4, $5)`, 
-//                                                 [ book.asin, book.category, book.img, book.title, book.price])
-//             total++ //increment total
-//         } //if it's in the list
-//         else { //skip it!
-//             console.log(`Element ${book.asin} is already in the DB!`)
-//             skipped++ //increment skipped
-//         }
-//     })
-
-//     res.send({ //return the number of skipped and added
-//         added: total,
-//         skipped
+//     const response = await db.query('SELECT * FROM "Books"')
+//     res.send({
+//         rows: response.rows, 
+//         rowCount: response.rowCount
 //     })
 // })
+//----------------------
+bookRouter.get("/", async(req, res) =>{
+    //localhost:3023/books/?order=desc
 
-bookRouter.get("/", async(req, res)=>{
-    // getting values from Query String ?offset=10 etc
-    // OR setting a default value
+    // 1. Order by: asc or desc
     const order = req.query.order || "asc"
+    // 2. Offset
     const offset = req.query.offset || 0
-    const limit = req.query.limit || 10
+    //localhost:3023/books/?order=desc &category=Education&limit=2&offset=3
+   // 3. Limit
+    const limit = req.query.limit || 6
+    //localhost:3023/books/?order=desc &category=Education&limit=2
 
-    // removing them from Query since otherwise I'll automatically filter on them
-    delete req.query.order
-    delete req.query.offset
-    delete req.query.limit
+     // Removing them from Query since otherwise I'll automaticlly filter on them
+     delete req.query.order
+     delete req.query.offset
+     delete req.query.limit
 
-    let query = 'SELECT * FROM "Books" ' //create my query
+
+    let query = 'SELECT * FROM "Books"'// create my Query
 
     const params = []
     for (queryParam in req.query) { //for each value in query string, I'll filter
@@ -58,88 +45,80 @@ bookRouter.get("/", async(req, res)=>{
             query += ` AND ${queryParam} = $${params.length} `
     }
 
-    query += " ORDER BY Title " + order  //adding the sorting 
-
-    params.push (limit)
-    query += ` LIMIT $${params.length} `
-    params.push(offset)
-    query += ` OFFSET $${params.length}`
-    // query += ` LIMIT $${params.length+1} OFFSET $${params.length+2}` //adding the pagination
-    // params.push(limit)
-    // params.push(offset) 
-    console.log(query)
-
-    //you can also specify just the fields you are interested in, like:
-    //SELECT asin, category, img, title, price FROM "Books" 
-    const response = await db.query(query, params)
-    res.send(response.rows)
-})
-
-bookRouter.get("/:asin", async (req, res)=>{
-    const response = await db.query('SELECT asin, category, img, title, price FROM "Books" WHERE ASIN = $1', 
-                                                                                        [ req.params.asin ])
-
-    if (response.rowCount === 0) 
-        return res.status(404).send("Not found")
-
-    res.send(response.rows[0])
-})
-
-bookRouter.post("/", async (req, res)=> {
-    const response = await db.query(`INSERT INTO "Books" (ASIN, Category, Img, Title, Price) 
-                                     Values ($1, $2, $3, $4, $5)
-                                     RETURNING *`, 
-                                    [ req.body.asin, req.body.category, req.body.img, req.body.title, req.body.price ])
-    
-    console.log(response)
-    res.send(response.rows[0])
-})
-
-bookRouter.put("/:asin", async (req, res)=> {
-    try {
-        let params = []
-        let query = 'UPDATE "Books" SET '
-        for (bodyParamName in req.body) {
-            query += // for each element in the body I'll add something like parameterName = $Position
-                (params.length > 0 ? ", " : '') + //I'll add a coma before the parameterName for every parameter but the first
-                bodyParamName + " = $" + (params.length + 1) // += Category = $1 
-
-            params.push(req.body[bodyParamName]) //save the current body parameter into the params array
-        }
-
-        params.push(req.params.asin) //push the asin into the array
-        query += " WHERE asin = $" + (params.length) + " RETURNING *" //adding filtering for ASIN + returning
+        query += " ORDER BY title " + order // adding the sorting
+        query += ` LIMIT $${params.length+1} OFFSET $${params.length+2}`// adding the pagination
+        params.push(limit)
+        params.push(offset)
         console.log(query)
 
-        const result = await db.query(query, params) //querying the DB for updating the row
 
-        // const result = await db.query(`UPDATE "Books" 
-        //                             SET Category = $1,
-        //                             Img = $2,
-        //                             Title = $3,
-        //                             Price = $4
-        //                             WHERE ASIN = $5
-        //                             RETURNING *`,
-        //                             [ req.body.category, req.body.img, req.body.title, req.body.price, req.params.asin])
+    const response = await db.query(query, params)
+    res.send({
+        rowCount: response.rowCount,
+        rows: response.rows
+       
+    })
+})
+
+// 2. GET Books by ID:
+bookRouter.get("/:asin", async(req, res)=>{
+    const response = await db.query(' Select * FROM "Books" WHERE asin = $1', [req.params.asin] )
+
+    if(response.rowCount === 0)
+       { 
+        return res.status(404).send("Not Found!")
+      } else { 
+          res.send(response.rows[0])
+      }
+})
+
+// 3. POST Students:
+bookRouter.post("/", async(req, res) => {
+    const response = await db.query(`INSERT INTO "Books" (asin, title, img, category, price) VALUES($1, $2, $3, $4, $5) RETURNING *`, [req.body.asin, req.body.title, req.body.img, req.body.category, req.body.price])
+
+    console.log(response.rows[0])
+    res.send(response.rows[0])
+})
+
+// 4. PUT Students:
+bookRouter.put("/:asin", async(req, res) => {
+    try{
+         let params = []
+         let query = 'UPDATE "Books" SET '
+         for(bodyParamName in req.body){
+
+            query += // for each element in the body I'll add something like parameterName = $Position
+            (params.length > 0 ? ", ": '') +// I'll add a coma before the parameterName for every parameter, but the first
+            bodyParamName + " = $" + (params.length + 1)// += Category = $1
+          //
+          params.push(req.body[bodyParamName])// save the current body parameter intro the params array
+       }
+       params.push(req.params.asin)// push the asin into the aray
+       query +=" WHERE asin = $" +(params.length) + " RETURNING *"// adding filtering for ASIN + returning
+       console.log(query)
+
+       const result = await db.query(query, params)// querying the DB for updating the row
+    
+        if(result.rowCount === 0)
+        return res.status(404).send("Not Found!")
         
-        if (result.rowCount === 0) //if no element match the specified ASIN => 404
-            return res.status(404).send("Not Found")
-
-        res.send(result.rows[0]) //else, return the updated version
-    }
-    catch(ex) {
+            console.log(result.rows[0]) 
+            res.send(result.rows[0])
+    } catch(ex){
         console.log(ex)
         res.status(500).send(ex)
     }
 })
 
+// 5. DELETE
 bookRouter.delete("/:asin", async (req, res) => {
-    const response = await db.query(`DELETE FROM "Books" WHERE ASIN = $1`, [ req.params.asin ])
+    const response = await db.query(`DELETE FROM "Books" WHERE asin = $1`, [ req.params.asin ])
 
     if (response.rowCount === 0)
         return res.status(404).send("Not Found")
     
     res.send("OK")
 })
+
 
 module.exports = bookRouter
