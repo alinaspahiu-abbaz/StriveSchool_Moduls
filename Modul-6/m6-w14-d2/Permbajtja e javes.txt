@@ -1,8 +1,0 @@
-2. 07.07.2020 - E marte:
- --> Video I:
-     - Shpjegim per Databaza
-     - Konnektimi me Databazen: 50:00
- --> Video II:
-     -Implementimi i CRUDIT
- --> Video III:
-     -     
