@@ -1,14 +1,6 @@
 import React from "react";
-import {
-  Jumbotron,
-  Button,
-  Container,
-  Row,
-  Col,
-  Card,
-  Dropdown,
-  DropdownButton,
-} from "react-bootstrap";
+import { Jumbotron, Button, Container, Row, Col,
+         Card, Dropdown, DropdownButton, InputGroup, FormControl } from "react-bootstrap";
 
 let bookCategories = ["fantasy", "horror", "history", "romance", "scifi"];
 let books = {
@@ -21,19 +13,33 @@ let books = {
 
 class Home extends React.Component {
   state = {
-    books: books.fantasy.slice(0, 12),
-    categorySelected: "fantasy",
+    books: books.fantasy.slice(0, 6),
+    categorySelected: "scifi",
   };
 
   handleDropdownChange = (category) => {
     this.setState({
-      books: books[category].slice(0, 12),
+      books: books[category].slice(0, 6),
       categorySelected: category,
     });
   };
 
+  handleSearchQuery = (e) => {
+
+    if(e) {
+       let filteredBooks = books[this.state.categorySelected].filter(book => book.title.toLowerCase().includes(e.toLowerCase())
+       )
+       this.setState({books: filteredBooks})
+       
+
+    
+    }
+    else { this.setState({ books: books[this.state.categorySelected].slice(0,6)})}
+
+  }
+
   render() {
-    console.log("BOOKS", books);
+    //console.log("BOOKS", books);
     return (
       <div>
         <Jumbotron>
@@ -47,7 +53,9 @@ class Home extends React.Component {
           </p>
         </Jumbotron>
         <Container>
+          <InputGroup>
           <DropdownButton
+            // as={InputGroup.Prepend}
             id="dropdown-basic-button"
             className="mb-3"
             title={this.state.categorySelected}
@@ -64,10 +72,16 @@ class Home extends React.Component {
               );
             })}
           </DropdownButton>
+          <FormControl
+                placeholder="Search books by title" 
+                aria-label="Search books by title" 
+                aria-describedby="basic-addon1" 
+                onChange={ (e) =>this.handleSearchQuery(e.target.value) }/>
+          </InputGroup>
           <Row>
             {this.state.books.map((book) => {
               return (
-                <Col xs={6} key={book.asin}>
+                <Col xs={4} key={book.asin}>
                   <Card style={{ width: "18rem" }}>
                     <Card.Img variant="top" src={book.img} />
                     <Card.Body>
