@@ -18,12 +18,11 @@ const BookSchema = new Schema(
 
 BookSchema.post("save", function(error, doc, next){
   if(error.name === "MonggoError" && error.code === 11000){
-    const err = new Error("duplicate ker error")
-
+    const err = new Error("duplicate key error")
     err.httpStatus = 400
     next(err)  
   } else {
-    next()
+    next(error)
   }
 })
 
