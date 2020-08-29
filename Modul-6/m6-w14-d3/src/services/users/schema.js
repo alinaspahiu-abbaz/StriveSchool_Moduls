@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose")
-const theValidator = require("validator")
+const v = require("validator")
 
 const userSchema = new Schema({
   name: {
@@ -13,9 +13,12 @@ const userSchema = new Schema({
   age: {
     type: Number,
     required: true,
+    //creating my own validator
     validate(value){
       if(value<0){
         throw new Error("Age should not be a negative number!")
+      } else if(value < 15){
+        throw new Error("You are to young to be a programmer. Finish your high school first!")
       }
     },
   },
@@ -25,7 +28,7 @@ const userSchema = new Schema({
     lowercase: true, //this is sanitization
     validate:{
          validator: async(value) =>{
-           if(!theValidator.isEmail(value)){
+           if(!v.isEmail(value)){
              throw new Error("Email not valid!")
            } else {
              // read in the db if the email is in use
@@ -50,5 +53,15 @@ userSchema.post("validate", function(error, doc, next){
   }
 })
 
-const userModel = model("user", userSchema)
+userSchema.post("update", function(error, res, next){
+  if(error){
+    console.log(error)
+    error.httpStatusCode = 400
+    next(error)
+  } else {
+    next()
+  }
+})
+//userModel is a connection with users collection, and we use it here to perform a find, for example to validate if an email already exists.
+const userModel = model("User", userSchema)
 module.exports = userModel
