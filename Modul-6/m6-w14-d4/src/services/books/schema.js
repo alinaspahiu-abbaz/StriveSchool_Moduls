@@ -1,18 +1,18 @@
-const { Schema } = require("mongoose")
+const { Schema, model } = require("mongoose")
 const mongoose = require("mongoose")
 
 const BookSchema = new Schema(
   {
     _id: {type: String, required: true},
     title: String,
-    author: String,
+    price: Number,
     description: String,
     // year: Number,
     // genre: Array,
     // price: Number,
     authors:[{
       type: Schema.Types.ObjectId, 
-      ref: "Author"
+      ref: "Authors"
     }]
   },
   { 
@@ -20,10 +20,12 @@ const BookSchema = new Schema(
    }
 )
 
-BookSchema.static("findBooksWithAuthors", async function(){
-  const booksList = await BookSchema.find(req.query).populate("authors")
-  return booksList
-})
+// BookSchema.static("findBooksWithAuthors", async function(query){
+  
+//   const booksList = await BookSchema.find(query).populate("authors")
+//   return booksList
+ 
+// })
 
 BookSchema.post("save", function(error, doc, next){
   if(error.name === "MonggoError" && error.code === 11000){
@@ -36,4 +38,4 @@ BookSchema.post("save", function(error, doc, next){
   }
 })
 
-module.exports = mongoose.model("Book", BookSchema)
+module.exports = model("Book", BookSchema)
