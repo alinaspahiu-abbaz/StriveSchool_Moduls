@@ -6,4 +6,4 @@ const authorSchema = new Schema({
     age:Number
 })
 
-module.exports =model("Authors", authorSchema)
+module.exports = model("Authors", authorSchema)
