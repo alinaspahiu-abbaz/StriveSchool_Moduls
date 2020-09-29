@@ -15,9 +15,9 @@ const BookSchema = new Schema(
       ref: "Authors"
     }]
   },
-  { 
+   { 
     _id: false // here we say to mongoDB  do not create the id automaticly
-   }
+    }
 )
 
 // BookSchema.static("findBooksWithAuthors", async function(query){
@@ -26,6 +26,11 @@ const BookSchema = new Schema(
 //   return booksList
  
 // })
+
+BookSchema.static("findBooksWithAuthors", async function(query){
+  const booksList = await BookSchema.find(query).populate("authors")
+  return booksList
+})
 
 BookSchema.post("save", function(error, doc, next){
   if(error.name === "MonggoError" && error.code === 11000){
