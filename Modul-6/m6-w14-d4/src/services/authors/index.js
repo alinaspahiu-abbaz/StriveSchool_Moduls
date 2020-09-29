@@ -6,7 +6,7 @@ const authorsRouter = express.Router()
 
 authorsRouter.get("/", async (req, res, next) => {
   try {
-    const authors = await AuthorSchema.find(req.query)
+    const authors = await AuthorSchema.find(req.query).populate('books')
     res.send(authors)
   } catch (error) {
     next(error)
@@ -35,7 +35,7 @@ authorsRouter.post("/", async (req, res, next) => {
     const newAuthor = new AuthorSchema(req.body)
     const { _id } = await newAuthor.save()
 
-    res.status(201).send(_id)
+    res.status(201).send(newAuthor)
   } catch (error) {
     next(error)
   }
