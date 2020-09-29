@@ -1,9 +1,10 @@
-const {Schema, model} = require("mongoose")
+const mongoose = require("mongoose")
 
-const authorSchema = new Schema({
+const authorSchema = mongoose.Schema({
     firstName:String,
     lastName:String, 
-    age:Number
+    age:Number,
+    books:{type: mongoose.Schema.Types.ObjectId, ref:"Book", required: true}
 })
 
-module.exports = model("Authors", authorSchema)
+module.exports = mongoose.model("Authors", authorSchema)
