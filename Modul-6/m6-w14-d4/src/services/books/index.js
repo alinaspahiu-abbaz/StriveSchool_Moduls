@@ -6,7 +6,7 @@ const booksRouter = express.Router()
 
 booksRouter.get("/", async (req, res, next) => {
   try {
-    const booksList = await BookSchema.find(req.query).populate('authors', {_id:0, __v:0, age:0})
+    const booksList = await BookSchema.find(req.query).populate('authors')
     res.send(booksList)
   } catch (error) {
     next(error)
